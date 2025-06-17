@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import me.meteoritini.bromination.util.Log;
 import me.meteoritini.bromination.util.Miner;
+import net.minecraft.text.ClickEvent;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -18,7 +20,7 @@ public class UpdateCheck {
     private static String remote;
 
     private static void sendUpdateMessage() {
-        Miner.sendMessage(Text.literal("[" + BrominationClient.MOD_NAME + "] New version available: " + remote).formatted(Formatting.DARK_AQUA));
+        Miner.sendMessage(Text.literal("[" + BrominationClient.MOD_NAME + "] New version available: ").formatted(Formatting.DARK_AQUA).append(Text.literal(remote).setStyle(Style.EMPTY.withClickEvent(new ClickEvent.OpenUrl(URI.create("https://github.com/Meteoritini/Bromination/releases/latest")))).formatted(Formatting.AQUA, Formatting.BOLD, Formatting.UNDERLINE)));
     }
 
     public static void check() {
