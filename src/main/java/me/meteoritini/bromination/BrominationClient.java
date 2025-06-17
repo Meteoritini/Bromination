@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallba
 import java.io.IOException;
 
 public class BrominationClient implements ClientModInitializer {
-    public static final String MOD_ID = "bridge";
+    public static final String MOD_ID = "bromination";
 
     @Override
     public void onInitializeClient() {
