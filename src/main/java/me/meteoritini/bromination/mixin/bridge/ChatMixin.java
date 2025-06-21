@@ -1,7 +1,6 @@
 package me.meteoritini.bromination.mixin.bridge;
 
-import me.meteoritini.bromination.module.Bridge;
-import me.meteoritini.bromination.util.Chroma;
+import me.meteoritini.bromination.config.BrominationConfig;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.gui.hud.MessageIndicator;
 import net.minecraft.network.message.MessageSignatureData;
@@ -28,14 +27,16 @@ public abstract class ChatMixin {
     public void addMessage(Text message, @Nullable MessageSignatureData signatureData, @Nullable MessageIndicator indicator, CallbackInfo ci) {
         String msg = message.getString().replaceAll("§([0-9]|[a-f]|r|[k-o])", "");
         Matcher matcher = pattern.matcher(msg);
-        if(!matcher.find() || matcher.groupCount() < 4) return;
-        for(String user : Bridge.users) {
-            if(user.equalsIgnoreCase(matcher.group(2))) {
-                addMessage(Text.literal(matcher.group(1).equals("Officer")?"Bridge (Staff) > ":"Bridge > ")
-                        .withColor(Chroma.getColour(Bridge.colourConf[0]))
-                            .append(Text.literal(matcher.group(3)).withColor(Chroma.getColour(Bridge.colourConf[1]))
+        if (!matcher.find() || matcher.groupCount() < 4) return;
+        for (String user : BrominationConfig.getInstance().bridgeConfig.users) {
+            if (user.equalsIgnoreCase(matcher.group(2))) {
+                addMessage(Text.literal(matcher.group(1).equals("Officer") ? "Bridge (Staff) > " : "Bridge > ")
+                        .withColor(BrominationConfig.getInstance().bridgeConfig.prefixColor.getRGB())
+                        .append(Text.literal(matcher.group(3))
+                                .withColor(BrominationConfig.getInstance().bridgeConfig.nameColor.getRGB())
                                 .append(Text.literal(": ").formatted(Formatting.GRAY)
-                                    .append(Text.literal(matcher.group(4)).withColor(Chroma.getColour(Bridge.colourConf[2]))))));
+                                        .append(Text.literal(matcher.group(4))
+                                                .withColor(BrominationConfig.getInstance().bridgeConfig.messageColor.getRGB())))));
                 ci.cancel();
                 return;
             }
