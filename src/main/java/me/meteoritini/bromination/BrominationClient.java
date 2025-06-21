@@ -1,6 +1,8 @@
 package me.meteoritini.bromination;
 
+import me.meteoritini.bromination.config.ConfigCommand;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 
 public class BrominationClient implements ClientModInitializer {
@@ -8,6 +10,7 @@ public class BrominationClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        ClientCommandRegistrationCallback.EVENT.register(ConfigCommand::registerCommands);
         ClientPlayConnectionEvents.JOIN.register((a, b, c) -> UpdateCheck.check());
     }
 }
