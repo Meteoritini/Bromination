@@ -23,7 +23,7 @@ public abstract class ChatMixin {
     @Shadow public abstract void addMessage(Text message);
 
     @Unique
-    private static final Pattern pattern = Pattern.compile("(?s)^(Guild|Officer) > (?:\\[[A-Z]+\\+*] )?((?:[A-z]|[0-9]|_){3,16})(?: \\[(?:[A-z]|[0-9]|_)+])?: ([^:( >)]+)(?::| >) (.*)");
+    private static final Pattern pattern = Pattern.compile("(?s)^(Guild|Officer) > (?:\\[[A-Z]+\\+*] )?((?:[A-z]|[0-9]|_){3,16})(?: \\[(?:[A-z]|[0-9]|_)+])?: ([^:>]+)[:>] (.*)");
     @Inject(method = "addMessage(Lnet/minecraft/text/Text;Lnet/minecraft/network/message/MessageSignatureData;Lnet/minecraft/client/gui/hud/MessageIndicator;)V", at = @At("HEAD"), cancellable = true)
     public void addMessage(Text message, @Nullable MessageSignatureData signatureData, @Nullable MessageIndicator indicator, CallbackInfo ci) {
         String msg = message.getString().replaceAll("§([0-9]|[a-f]|r|[k-o])", "");
