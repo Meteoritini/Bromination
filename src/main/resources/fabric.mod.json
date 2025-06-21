@@ -12,6 +12,9 @@
   "entrypoints": {
     "client": [
       "me.meteoritini.bromination.BrominationClient"
+    ],
+    "modmenu": [
+      "me.meteoritini.bromination.config.ModMenuIntegration"
     ]
   },
   "mixins": [
