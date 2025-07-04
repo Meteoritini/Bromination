@@ -17,7 +17,7 @@ public class UtilitiesCategory {
                                 .option(
                                         Option.<Boolean>createBuilder()
                                                 .name(Text.literal("Copy chat"))
-                                                .description(OptionDescription.of(Text.literal("CTRL Click a message to copy it")))
+                                                .description(OptionDescription.of(Text.literal("CTRL Click a message to copy it.")))
                                                 .binding(
                                                         defaults.utilitiesConfig.copyChat,
                                                         () -> config.utilitiesConfig.copyChat,
@@ -29,7 +29,7 @@ public class UtilitiesCategory {
                                 .option(
                                         Option.<Boolean>createBuilder()
                                                 .name(Text.literal("Collapse chat"))
-                                                .description(OptionDescription.of(Text.literal("Collapse repeating messages")))
+                                                .description(OptionDescription.of(Text.literal("Collapse repeating messages.")))
                                                 .binding(
                                                         defaults.utilitiesConfig.collapseChat,
                                                         () -> config.utilitiesConfig.collapseChat,
@@ -44,11 +44,23 @@ public class UtilitiesCategory {
                                 .option(
                                         Option.<Boolean>createBuilder()
                                                 .name(Text.literal("Unlimited chat"))
-                                                .description(OptionDescription.of(Text.literal("Don't delete old messages if the chat gets too long")))
+                                                .description(OptionDescription.of(Text.literal("Don't delete old messages if the chat gets too long.")))
                                                 .binding(
                                                         defaults.utilitiesConfig.unlimitedChat,
                                                         () -> config.utilitiesConfig.unlimitedChat,
                                                         newVal -> config.utilitiesConfig.unlimitedChat = newVal
+                                                )
+                                                .controller(BooleanControllerBuilder::create)
+                                                .build()
+                                )
+                                .option(
+                                        Option.<Boolean>createBuilder()
+                                                .name(Text.literal("Persistent chat"))
+                                                .description(OptionDescription.of(Text.literal("Keep chat messages between servers and reconnects.")))
+                                                .binding(
+                                                        defaults.utilitiesConfig.persistentChat,
+                                                        () -> config.utilitiesConfig.persistentChat,
+                                                        newVal -> config.utilitiesConfig.persistentChat = newVal
                                                 )
                                                 .controller(BooleanControllerBuilder::create)
                                                 .build()
