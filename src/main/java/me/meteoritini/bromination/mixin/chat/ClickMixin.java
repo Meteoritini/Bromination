@@ -31,7 +31,7 @@ public abstract class ClickMixin {
 
     @Shadow @Final private MinecraftClient client;
 
-    @Inject(method = "mouseClicked", at = @At("HEAD"))
+    @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
     private void mouseClicked(double mouseX, double mouseY, CallbackInfoReturnable<Boolean> cir) {
         if(!BrominationConfig.getInstance().utilitiesConfig.copyChat || !ChatOptions.ctrlPressed) return;
         int i = getMessageLineIndex(toChatLineX(mouseX), toChatLineY(mouseY));
@@ -40,6 +40,8 @@ public abstract class ClickMixin {
             for(ChatHudLine line : messages) {
                 if(((IChatHudLine) (Object) line).bromination$getReference() == reference) {
                     client.keyboard.setClipboard(Miner.rawString(line.content().getString()));
+                    cir.setReturnValue(true);
+                    cir.cancel();
                     return;
                 }
             }
