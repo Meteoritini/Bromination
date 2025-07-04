@@ -6,7 +6,10 @@
   "mixins": [
   ],
   "client": [
-    "bridge.ChatMixin"
+    "bridge.ChatMixin",
+    "chat.ChatHudLineMixin",
+    "chat.ChatHudLineMixinVisible",
+    "chat.MessageMixin"
   ],
   "injectors": {
     "defaultRequire": 1

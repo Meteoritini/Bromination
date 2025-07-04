@@ -6,7 +6,9 @@ import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import me.meteoritini.bromination.config.category.BridgeCategory;
+import me.meteoritini.bromination.config.category.UtilitiesCategory;
 import me.meteoritini.bromination.config.configs.BridgeConfig;
+import me.meteoritini.bromination.config.configs.UtilitiesConfig;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
@@ -29,6 +31,9 @@ public class BrominationConfig {
     @SerialEntry
     public BridgeConfig bridgeConfig = new BridgeConfig();
 
+    @SerialEntry
+    public UtilitiesConfig utilitiesConfig = new UtilitiesConfig();
+
     public static BrominationConfig getInstance() {
         return HANDLER.instance();
     }
@@ -37,6 +42,7 @@ public class BrominationConfig {
         return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) ->
                 builder.title(Text.literal("Bromination Configuration"))
                         .category(BridgeCategory.create(defaults, config))
+                        .category(UtilitiesCategory.create(defaults, config))
         ).generateScreen(parent);
     }
 }
