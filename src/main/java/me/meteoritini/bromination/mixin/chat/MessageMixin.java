@@ -6,6 +6,7 @@ import me.meteoritini.bromination.config.overrides.IChatHudLine;
 import me.meteoritini.bromination.util.Miner;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.gui.hud.ChatHudLine;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Formatting;
@@ -41,7 +42,7 @@ public class MessageMixin {
         }
         messages.removeIf(line -> ((IChatHudLine) (Object) line).bromination$getReference() == occurrence.reference());
         visibleMessages.removeIf(line -> ((IChatHudLine) (Object) line).bromination$getReference() == occurrence.reference());
-        message = message.copy().append(Text.literal(" (" + (occurrence.amount()+1) + ")").formatted(Formatting.RESET).withColor(Colors.GRAY));
+        message = message.copy().append(Text.literal(" (" + (occurrence.amount()+1) + ")").setStyle(Miner.STYLE_ERASE).withColor(Colors.GRAY));
         ChatOptions.collapse.put(key, new ChatOptions.MessageOccurrence(occurrence.amount()+1, ChatOptions.nextReference = occurrence.reference(), System.currentTimeMillis()));
         return message;
     }
