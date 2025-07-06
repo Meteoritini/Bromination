@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallba
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 
 public class BrominationClient implements ClientModInitializer {
-    public static final String MOD_ID = "bromination", MOD_VERSION = "v1.2", MOD_NAME = "Bromination";
+    public static final String MOD_ID = "bromination", MOD_VERSION = "v1.2.1", MOD_NAME = "Bromination";
 
     @Override
     public void onInitializeClient() {

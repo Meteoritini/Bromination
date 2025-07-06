@@ -9,7 +9,6 @@ import net.minecraft.client.gui.hud.ChatHudLine;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
-import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(value = ChatHud.class, priority = 100000)
+@Mixin(value = ChatHud.class, priority = 200)
 public class MessageMixin {
     @Shadow @Final private List<ChatHudLine> messages;
 
