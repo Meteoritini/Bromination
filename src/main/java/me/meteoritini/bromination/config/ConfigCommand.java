@@ -1,15 +1,15 @@
 package me.meteoritini.bromination.config;
 
 import com.mojang.brigadier.CommandDispatcher;
-import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommands;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.client.Minecraft;
+import net.minecraft.commands.CommandBuildContext;
 
 public class ConfigCommand {
-    public static void registerCommands(CommandDispatcher<FabricClientCommandSource> dispatcher, CommandRegistryAccess registryAccess) {
-        dispatcher.register(ClientCommandManager.literal("bromination").executes(context -> {
-            MinecraftClient.getInstance().send(() -> MinecraftClient.getInstance().setScreen(BrominationConfig.createGUI(MinecraftClient.getInstance().currentScreen)));
+    public static void registerCommands(CommandDispatcher<FabricClientCommandSource> dispatcher, CommandBuildContext buildContext) {
+        dispatcher.register(ClientCommands.literal("bromination").executes(context -> {
+            Minecraft.getInstance().execute(() -> Minecraft.getInstance().setScreen(BrominationConfig.createGUI(Minecraft.getInstance().screen)));
             return 1;
         }));
     }

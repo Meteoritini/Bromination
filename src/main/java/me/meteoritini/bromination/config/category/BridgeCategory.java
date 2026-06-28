@@ -4,18 +4,18 @@ import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.ColorControllerBuilder;
 import dev.isxander.yacl3.api.controller.StringControllerBuilder;
 import me.meteoritini.bromination.config.BrominationConfig;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 import java.awt.*;
 
 public class BridgeCategory {
     public static ConfigCategory create(BrominationConfig defaults, BrominationConfig config) {
         return ConfigCategory.createBuilder()
-                .name(Text.literal("Bridge Config"))
+                .name(Component.literal("Bridge Config"))
                 .group(
                         ListOption.<String>createBuilder()
-                                .name(Text.literal("Bridge Bot IGNs"))
-                                .description(OptionDescription.of(Text.literal("Enter the IGNs of the Bridge Bots you want this mod to work with.")))
+                                .name(Component.literal("Bridge Bot IGNs"))
+                                .description(OptionDescription.of(Component.literal("Enter the IGNs of the Bridge Bots you want this mod to work with.")))
                                 .binding(
                                         defaults.bridgeConfig.users,
                                         () -> config.bridgeConfig.users,
@@ -25,12 +25,12 @@ public class BridgeCategory {
                                 .build()
                 ).group(
                         OptionGroup.createBuilder()
-                                .name(Text.literal("Color settings"))
-                                .description(OptionDescription.of(Text.literal("Change the colors used in the bridge message.")))
+                                .name(Component.literal("Color settings"))
+                                .description(OptionDescription.of(Component.literal("Change the colors used in the bridge message.")))
                                 .option(
                                         Option.<Color>createBuilder()
-                                                .name(Text.literal("Prefix"))
-                                                .description(OptionDescription.of(Text.literal("Change the prefix color.")))
+                                                .name(Component.literal("Prefix"))
+                                                .description(OptionDescription.of(Component.literal("Change the prefix color.")))
                                                 .binding(
                                                         defaults.bridgeConfig.prefixColor,
                                                         () -> config.bridgeConfig.prefixColor,
@@ -39,8 +39,8 @@ public class BridgeCategory {
                                                 .controller(ColorControllerBuilder::create).build()
                                 ).option(
                                         Option.<Color>createBuilder()
-                                                .name(Text.literal("Name"))
-                                                .description(OptionDescription.of(Text.literal("Change the name color.")))
+                                                .name(Component.literal("Name"))
+                                                .description(OptionDescription.of(Component.literal("Change the name color.")))
                                                 .binding(
                                                         defaults.bridgeConfig.nameColor,
                                                         () -> config.bridgeConfig.nameColor,
@@ -49,8 +49,8 @@ public class BridgeCategory {
                                                 .controller(ColorControllerBuilder::create).build()
                                 ).option(
                                         Option.<Color>createBuilder()
-                                                .name(Text.literal("Message"))
-                                                .description(OptionDescription.of(Text.literal("Change the message color.")))
+                                                .name(Component.literal("Message"))
+                                                .description(OptionDescription.of(Component.literal("Change the message color.")))
                                                 .binding(
                                                         defaults.bridgeConfig.messageColor,
                                                         () -> config.bridgeConfig.messageColor,

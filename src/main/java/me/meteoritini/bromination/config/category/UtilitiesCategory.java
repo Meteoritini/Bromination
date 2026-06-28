@@ -4,20 +4,20 @@ import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import me.meteoritini.bromination.ChatOptions;
 import me.meteoritini.bromination.config.BrominationConfig;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 public class UtilitiesCategory {
     public static ConfigCategory create(BrominationConfig defaults, BrominationConfig config) {
         return ConfigCategory.createBuilder()
-                .name(Text.literal("Utilities Config"))
+                .name(Component.literal("Utilities Config"))
                 .group(
                         OptionGroup.createBuilder()
-                                .name(Text.literal("Chat settings"))
-                                .description(OptionDescription.of(Text.literal("Utilities for utilizing the minecraft chat")))
+                                .name(Component.literal("Chat settings"))
+                                .description(OptionDescription.of(Component.literal("Utilities for utilizing the minecraft chat")))
                                 .option(
                                         Option.<Boolean>createBuilder()
-                                                .name(Text.literal("Collapse chat"))
-                                                .description(OptionDescription.of(Text.literal("Collapse repeating messages.")))
+                                                .name(Component.literal("Collapse chat"))
+                                                .description(OptionDescription.of(Component.literal("Collapse repeating messages.")))
                                                 .binding(
                                                         defaults.utilitiesConfig.collapseChat,
                                                         () -> config.utilitiesConfig.collapseChat,
@@ -31,8 +31,8 @@ public class UtilitiesCategory {
                                 )
                                 .option(
                                         Option.<Boolean>createBuilder()
-                                                .name(Text.literal("Unlimited chat"))
-                                                .description(OptionDescription.of(Text.literal("Don't delete old messages if the chat gets too long.")))
+                                                .name(Component.literal("Unlimited chat"))
+                                                .description(OptionDescription.of(Component.literal("Don't delete old messages if the chat gets too long.")))
                                                 .binding(
                                                         defaults.utilitiesConfig.unlimitedChat,
                                                         () -> config.utilitiesConfig.unlimitedChat,
@@ -43,8 +43,8 @@ public class UtilitiesCategory {
                                 )
                                 .option(
                                         Option.<Boolean>createBuilder()
-                                                .name(Text.literal("Persistent chat"))
-                                                .description(OptionDescription.of(Text.literal("Keep chat messages between servers and reconnects.")))
+                                                .name(Component.literal("Persistent chat"))
+                                                .description(OptionDescription.of(Component.literal("Keep chat messages between servers and reconnects.")))
                                                 .binding(
                                                         defaults.utilitiesConfig.persistentChat,
                                                         () -> config.utilitiesConfig.persistentChat,
