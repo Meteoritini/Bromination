@@ -4,10 +4,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import me.meteoritini.bromination.util.Log;
 import me.meteoritini.bromination.util.Miner;
-import net.minecraft.text.ClickEvent;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.ClickEvent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,7 +20,7 @@ public class UpdateCheck {
     private static String remote;
 
     private static void sendUpdateMessage() {
-        Miner.sendMessage(Text.literal("[" + BrominationClient.MOD_NAME + "] New version available: ").formatted(Formatting.DARK_AQUA).append(Text.literal(remote).setStyle(Style.EMPTY.withClickEvent(new ClickEvent.OpenUrl(URI.create("https://github.com/Meteoritini/Bromination/releases/latest")))).formatted(Formatting.AQUA, Formatting.BOLD, Formatting.UNDERLINE)));
+        Miner.sendMessage(Component.literal("[" + BrominationClient.MOD_NAME + "] New version available: ").withStyle(ChatFormatting.DARK_AQUA).append(Component.literal(remote).setStyle(Style.EMPTY.withClickEvent(new ClickEvent.OpenUrl(URI.create("https://github.com/Meteoritini/Bromination/releases/latest")))).withStyle(ChatFormatting.AQUA, ChatFormatting.BOLD, ChatFormatting.UNDERLINE)));
     }
 
     public static void check() {

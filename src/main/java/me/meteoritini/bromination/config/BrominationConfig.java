@@ -10,13 +10,13 @@ import me.meteoritini.bromination.config.category.UtilitiesCategory;
 import me.meteoritini.bromination.config.configs.BridgeConfig;
 import me.meteoritini.bromination.config.configs.UtilitiesConfig;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 
 public class BrominationConfig {
     public static final ConfigClassHandler<BrominationConfig> HANDLER = ConfigClassHandler.createBuilder(BrominationConfig.class)
-            .id(Identifier.of("bromination", "bromination"))
+            .id(Identifier.fromNamespaceAndPath("bromination", "bromination"))
             .serializer(config -> GsonConfigSerializerBuilder.create(config)
                     .setPath(FabricLoader.getInstance().getConfigDir().resolve("bromination.json5"))
                     .appendGsonBuilder(GsonBuilder::setPrettyPrinting)
@@ -40,7 +40,7 @@ public class BrominationConfig {
 
     public static Screen createGUI(Screen parent) {
         return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) ->
-                builder.title(Text.literal("Bromination Configuration"))
+                builder.title(Component.literal("Bromination Configuration"))
                         .category(BridgeCategory.create(defaults, config))
                         .category(UtilitiesCategory.create(defaults, config))
         ).generateScreen(parent);
